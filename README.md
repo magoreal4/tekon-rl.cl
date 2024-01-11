@@ -3,16 +3,16 @@
 ## Virtual environment and packages
 
 ```shell
-python3 -m venv env
+python3 -m venv .venv
 source env/bin/activate
 ```
 
 ## requirements.txt
 
 ```textile
-Django==4.0.3
-django-livereload-server==0.4
-gunicorn==20.1.0
+Django==5.0.1
+django-import-export==3.3.6
+gunicorn==21.2.0
 ```
 
 ```shell
