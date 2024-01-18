@@ -1,10 +1,3 @@
-/**
- * This is a minimal config.
- *
- * If you need the full config, get it from here:
- * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
- */
-
 module.exports = {
     content: [
         /**
@@ -13,6 +6,8 @@ module.exports = {
 
         /*  Templates within theme app (<tailwind_app_name>/templates), e.g. base.html. */
         '../../templates/**/*.html',
+        '../../main/src/index-main.js',
+        // main/src/index-main.js
 
         /*
          * Main templates directory of the project (BASE_DIR/templates).

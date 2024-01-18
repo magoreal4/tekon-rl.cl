@@ -18,9 +18,11 @@ class SitioResource(resources.ModelResource):
         'lon',
         'hormigonado',
         'montado',
+        'empalmeE',
         'ito',
         'descripcion',
-        'avance',       
+        'avance',
+        'fechaFin',      
     )
     class Meta:
         model = Sitio
@@ -34,17 +36,17 @@ class SitioAdmin(ImportExportModelAdmin):
         'altura',
         'contratista',
         'estado',
-        'lat',
-        'lon',
         'hormigonado',
         'montado',
+        'empalmeE',
         'avance',
+        'fechaFin',
         'descripcion',
         'ito', 
    
     )
     list_editable = (
-        'estado', 'ito', 'hormigonado', 'montado', 'avance', 'descripcion'
+        'estado', 'ito', 'hormigonado', 'montado', 'empalmeE', 'avance', 'fechaFin', 'descripcion'
     )
     list_display_links = ('cod', )
 

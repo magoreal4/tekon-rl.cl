@@ -145,21 +145,27 @@ var mcgLayerSupportGroup = L.markerClusterGroup.layerSupport({
     // Definiendo las rutas a los íconos
     var checkIconPath = static_url+'img/check.png';
     var crossIconPath = static_url+'img/cross.png';
-    var neutralIconPath = static_url+'img/neutral.png';
 
     var progressValue = e['avance']; // Este es el valor de progreso. Reemplázalo con tu valor dinámico
 
     var popupContent = `
     <div>
+    <strong> ${e['cod']} ${e['comuna']} - ${e['contratista']} </strong>
     <p>${e['descripcion']}</p>
     <div class="flex items-center mb-1">
-        <img src="${e['hormigonado'] ? checkIconPath : crossIconPath}" alt="Cross" class="w-5 h-5 mr-1"> Hormigonado
+        <img src="${e['hormigonado'] ? checkIconPath : crossIconPath}" alt="Cross" class="w-3 h-3 mr-1"> Hormigonado
     </div>
     <div class="flex items-center mb-1">
-        <img src="${e['montado'] ? checkIconPath : crossIconPath}" alt="Check" class="w-5 h-5 mr-1"> Montado
+        <img src="${e['montado'] ? checkIconPath : crossIconPath}" alt="Check" class="w-3 h-3 mr-1"> Montado
+    </div>
+    <div class="flex items-center mb-1">
+      <img src="${e['empalmeE'] ? checkIconPath : crossIconPath}" alt="Check" class="w-3 h-3 mr-1"> Empalme Electrico
+    </div>
+    <div class="flex items-center mb-1">
+      Fecha Entrega: <b>${e['fechaFin']} </b>
     </div>
     <div class="flex items-center">
-        <div class="w-full h-5 bg-gray-200 rounded-full overflow-hidden relative mr-2">
+        <div class="w-full h-4 bg-gray-200 rounded-full overflow-hidden relative mr-2">
             <div class="h-full bg-red-400 rounded-full" style="width: ${progressValue}%;"></div>
         </div>
         <span>${progressValue}%</span>
@@ -292,7 +298,9 @@ var asignadoAJ=0, asignadoMER=0,
 ejecucionAJ=0, ejecucionMER=0, 
 terminadoAJ=0, terminadoMER=0, 
 postergadoAJ=0, postergadoMER=0, 
-canceladoAJ=0, canceladoMER=0;
+canceladoAJ=0, canceladoMER=0,
+hormigonadoAJ=0, hormigonadoMER=0,
+montadoAJ=0, montadoMER=0;
 
 sitios.forEach(e => {
   e['contratista'] === 'AJ' ? asignadoAJ++ : asignadoMER++;
@@ -300,12 +308,16 @@ sitios.forEach(e => {
     if (e['estado'] === 'EJE') {ejecucionAJ++}
     if (e['estado'] === 'TER') {terminadoAJ++}
     if (e['estado'] === 'PTG') {postergadoAJ++}
-    if (e['estado'] === 'CAN') {canceladoAJ++}  
+    if (e['estado'] === 'CAN') {canceladoAJ++}
+    if (e['hormigonado'] === 1 ) {hormigonadoAJ++}
+    if (e['montado'] === 1 ) {montadoAJ++} 
+
   } else {
     if (e['estado'] === 'EJE') {ejecucionMER++}
     if (e['estado'] === 'TER') {terminadoMER++}
     if (e['estado'] === 'PTG') {postergadoMER++}
     if (e['estado'] === 'CAN') {canceladoMER++}
+    if (e['montado'] === 0 ) {montadoMER++}
   }
 });
 
@@ -349,7 +361,20 @@ var container = L.DomUtil.create('div');
       <td>${canceladoAJ}</td>
       <td>${canceladoMER}</td>
       <td>${canceladoAJ + canceladoMER}</td>
-    </tr>      
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Hormigonado</td>
+      <td>${hormigonadoAJ}</td>
+      <td>${hormigonadoMER}</td>
+      <td>${hormigonadoAJ + hormigonadoMER}</td>
+    </tr>
+    <td>Montaje</td>
+      <td>${montadoAJ}</td>
+      <td>${montadoMER}</td>
+      <td>${montadoAJ + montadoMER}</td>
+    </tr>
   </table>
   
   `;

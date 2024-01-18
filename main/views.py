@@ -10,12 +10,13 @@ class Home(TemplateView):
     template_name = "home_page.html"
 
     def get_context_data(self, **kwargs):
-        sitios = list(Sitio.objects.all().values('cod','comuna','altura', 'contratista', 'estado', 'lat', 'lon', 'ito', 'hormigonado', 'montado', 'descripcion', 'avance'))
+        sitios = list(Sitio.objects.all().values('cod','comuna','altura', 'contratista', 'estado', 'lat', 'lon', 'ito', 'hormigonado', 'montado', 'empalmeE', 'descripcion', 'avance', 'fechaFin'))
          # Puedes ajustar los campos que necesitas en el 'only' según tu modelo.
                 # Modificando los valores de 'hormigonado' y 'montado'
         for sitio in sitios:
             sitio['hormigonado'] = int(sitio['hormigonado'])
             sitio['montado'] = int(sitio['montado'])
+            sitio['empalmeE'] = int(sitio['empalmeE'])
             
         return {'sitios': sitios,}
 

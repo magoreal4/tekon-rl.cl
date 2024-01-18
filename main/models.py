@@ -45,8 +45,10 @@ class Sitio(models.Model):
     ito = models.ForeignKey(ITO, on_delete=models.CASCADE, null=True)
     hormigonado = models.BooleanField("Hor.", default=False)
     montado = models.BooleanField("Mon.", default=False)
+    empalmeE = models.BooleanField("Ele.", default=False)
     descripcion = models.TextField("Descripción", null=True, blank=True)
     avance = models.IntegerField("%", default=0)
+    fechaFin = models.CharField("Fecha", max_length=10, blank=True, null=True)
     class Meta:
         verbose_name = "Sitio"
         verbose_name_plural = "Sitios"
