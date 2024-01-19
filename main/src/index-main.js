@@ -317,7 +317,8 @@ sitios.forEach(e => {
     if (e['estado'] === 'TER') {terminadoMER++}
     if (e['estado'] === 'PTG') {postergadoMER++}
     if (e['estado'] === 'CAN') {canceladoMER++}
-    if (e['montado'] === 0 ) {montadoMER++}
+    if (e['hormigonado'] === 1 ) {hormigonadoMER++}
+    if (e['montado'] === 1 ) {montadoMER++}
   }
 });
 
